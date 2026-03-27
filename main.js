@@ -2,6 +2,7 @@ import watermark from 'watermarkjs';
 import JSZip from 'jszip';
 
 const watermarkInput = document.getElementById('watermarkInput');
+const fileInput = document.getElementById('fileInput');
 const folderInput = document.getElementById('folderInput');
 const applyBtn = document.getElementById('applyBtn');
 const fileCount = document.getElementById('fileCount');
@@ -30,15 +31,18 @@ watermarkInput.addEventListener('change', (e) => {
   updateButton();
 });
 
-folderInput.addEventListener('change', (e) => {
+function handleSourceFiles(e) {
   imageFiles = Array.from(e.target.files).filter((f) =>
     /\.(jpe?g|png)$/i.test(f.name)
   );
   fileCount.textContent = imageFiles.length
     ? `${imageFiles.length} image(s) found`
-    : 'No JPG/PNG images found in folder';
+    : 'No JPG/PNG images found';
   updateButton();
-});
+}
+
+fileInput.addEventListener('change', handleSourceFiles);
+folderInput.addEventListener('change', handleSourceFiles);
 
 applyBtn.addEventListener('click', async () => {
   applyBtn.disabled = true;

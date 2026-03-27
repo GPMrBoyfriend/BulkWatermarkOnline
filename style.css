@@ -27,6 +27,41 @@ label {
   font-weight: 600;
 }
 
+.source-inputs {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.file-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 2px solid #2563eb;
+  border-radius: 6px;
+  color: #2563eb;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.file-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.file-btn--folder {
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+
+.file-btn--folder:hover {
+  background: #7c3aed;
+  color: #fff;
+}
+
 .info {
   margin: 0;
   font-size: 0.9rem;

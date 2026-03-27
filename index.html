@@ -7,22 +7,30 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>Watermark Online</h1>
+  <h1>Bulk Watermark Online</h1>
+  <h2>Apply a watermark to multiple images at once.</h2>
 
   <div class="controls">
     <div class="control-group">
       <label>Watermark image:</label>
-      <input type="file" id="watermarkInput" accept="image/png,image/jpeg">
+      <label class="file-btn" for="watermarkInput">Select Watermark</label>
+      <input type="file" id="watermarkInput" accept="image/png,image/jpeg" hidden>
       <div id="watermarkPreview" class="preview"></div>
     </div>
 
     <div class="control-group">
-      <label>Source images (select a folder):</label>
-      <input type="file" id="folderInput" webkitdirectory multiple accept="image/png,image/jpeg">
+      <label>Source images:</label>
+      <div class="source-inputs">
+        <label class="file-btn" for="fileInput">Select Files</label>
+        <input type="file" id="fileInput" multiple accept="image/png,image/jpeg" hidden>
+        <label class="file-btn file-btn--folder" for="folderInput">Select Folder</label>
+        <input type="file" id="folderInput" webkitdirectory multiple accept="image/png,image/jpeg" hidden>
+      </div>
       <p id="fileCount" class="info"></p>
     </div>
 
     <button id="applyBtn" disabled>Apply Watermark</button>
+    <div><i>For the queen!</i></div>
   </div>
 
   <div id="progress" class="progress" hidden>
