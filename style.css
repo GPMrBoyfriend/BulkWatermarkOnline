@@ -75,6 +75,15 @@ button:disabled {
   transition: width 0.2s;
 }
 
+#downloadAllBtn {
+  margin-bottom: 1rem;
+  background: #16a34a;
+}
+
+#downloadAllBtn:disabled {
+  background: #a0aec0;
+}
+
 .results {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

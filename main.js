@@ -1,4 +1,5 @@
 import watermark from 'watermarkjs';
+import JSZip from 'jszip';
 
 const watermarkInput = document.getElementById('watermarkInput');
 const folderInput = document.getElementById('folderInput');
@@ -12,6 +13,7 @@ const results = document.getElementById('results');
 
 let watermarkFile = null;
 let imageFiles = [];
+let watermarkedImages = [];
 
 function updateButton() {
   applyBtn.disabled = !(watermarkFile && imageFiles.length > 0);
@@ -41,7 +43,9 @@ folderInput.addEventListener('change', (e) => {
 applyBtn.addEventListener('click', async () => {
   applyBtn.disabled = true;
   results.innerHTML = '';
+  watermarkedImages = [];
   progress.hidden = false;
+  downloadAllBtn.hidden = true;
 
   for (let i = 0; i < imageFiles.length; i++) {
     const file = imageFiles[i];
@@ -77,6 +81,8 @@ applyBtn.addEventListener('click', async () => {
       link.textContent = 'Download';
       link.className = 'download-link';
 
+      watermarkedImages.push({ name: `watermarked_${file.name}`, src: img.src });
+
       card.appendChild(img);
       card.appendChild(label);
       card.appendChild(link);
@@ -90,5 +96,32 @@ applyBtn.addEventListener('click', async () => {
   }
 
   progressText.textContent = 'Done!';
+  if (watermarkedImages.length > 0) {
+    downloadAllBtn.hidden = false;
+  }
   updateButton();
+});
+
+const downloadAllBtn = document.getElementById('downloadAllBtn');
+downloadAllBtn.addEventListener('click', async () => {
+  downloadAllBtn.disabled = true;
+  downloadAllBtn.textContent = 'Zipping…';
+
+  const zip = new JSZip();
+  for (const { name, src } of watermarkedImages) {
+    const resp = await fetch(src);
+    const blob = await resp.blob();
+    zip.file(name, blob);
+  }
+
+  const content = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(content);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'watermarked_images.zip';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  downloadAllBtn.disabled = false;
+  downloadAllBtn.textContent = 'Download All (.zip)';
 });
