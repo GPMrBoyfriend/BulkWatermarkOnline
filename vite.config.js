@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/watermark-online/',
+  base: '/BulkWatermarkOnline/',
   build: {
     outDir: 'dist',
   },
