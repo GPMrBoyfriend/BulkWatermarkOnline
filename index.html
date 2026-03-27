@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watermark Online</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Watermark Online</h1>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>Watermark image:</label>
+      <input type="file" id="watermarkInput" accept="image/png,image/jpeg">
+      <div id="watermarkPreview" class="preview"></div>
+    </div>
+
+    <div class="control-group">
+      <label>Source images (select a folder):</label>
+      <input type="file" id="folderInput" webkitdirectory multiple accept="image/png,image/jpeg">
+      <p id="fileCount" class="info"></p>
+    </div>
+
+    <button id="applyBtn" disabled>Apply Watermark</button>
+  </div>
+
+  <div id="progress" class="progress" hidden>
+    <p id="progressText"></p>
+    <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+  </div>
+
+  <div id="results" class="results"></div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
