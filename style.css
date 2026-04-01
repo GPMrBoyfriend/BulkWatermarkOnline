@@ -1,13 +1,79 @@
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f7fafc;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --border: #e2e8f0;
+  --border-light: #ddd;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --success: #16a34a;
+  --disabled: #a0aec0;
+  --error-text: #c53030;
+  --error-border: #feb2b2;
+  --error-bg: #fff5f5;
+  --btn-text: #fff;
+  --card-bg: var(--bg);
+  --progress-bg: #e2e8f0;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --bg-secondary: #16213e;
+  --text: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --border: #2d3748;
+  --border-light: #4a5568;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --accent: #8b5cf6;
+  --accent-hover: #7c3aed;
+  --success: #22c55e;
+  --disabled: #4a5568;
+  --error-text: #fc8181;
+  --error-border: #742a2a;
+  --error-bg: #2d1b1b;
+  --btn-text: #fff;
+  --card-bg: #16213e;
+  --progress-bg: #2d3748;
+}
+
 body {
   font-family: system-ui, sans-serif;
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
-  color: #1a1a1a;
+  color: var(--text);
+  background: var(--bg);
+  transition: background 0.2s, color 0.2s;
 }
 
 h1 {
   margin-bottom: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.theme-toggle {
+  background: none;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+  color: var(--text);
+  transition: border-color 0.15s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
 }
 
 .controls {
@@ -39,39 +105,39 @@ label {
   padding: 0.5rem 1.2rem;
   font-size: 0.9rem;
   font-weight: 500;
-  border: 2px solid #2563eb;
+  border: 2px solid var(--primary);
   border-radius: 6px;
-  color: #2563eb;
-  background: #fff;
+  color: var(--primary);
+  background: var(--bg);
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
 
 .file-btn:hover {
-  background: #2563eb;
-  color: #fff;
+  background: var(--primary);
+  color: var(--btn-text);
 }
 
 .file-btn--folder {
-  border-color: #7c3aed;
-  color: #7c3aed;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .file-btn--folder:hover {
-  background: #7c3aed;
-  color: #fff;
+  background: var(--accent);
+  color: var(--btn-text);
 }
 
 .info {
   margin: 0;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 .preview img {
   max-height: 80px;
   margin-top: 0.4rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-light);
   border-radius: 4px;
 }
 
@@ -81,13 +147,13 @@ button {
   font-size: 1rem;
   border: none;
   border-radius: 6px;
-  background: #2563eb;
-  color: #fff;
+  background: var(--primary);
+  color: var(--btn-text);
   cursor: pointer;
 }
 
 button:disabled {
-  background: #a0aec0;
+  background: var(--disabled);
   cursor: not-allowed;
 }
 
@@ -97,7 +163,7 @@ button:disabled {
 
 .progress-bar {
   height: 8px;
-  background: #e2e8f0;
+  background: var(--progress-bg);
   border-radius: 4px;
   overflow: hidden;
   margin-top: 0.4rem;
@@ -106,17 +172,17 @@ button:disabled {
 .progress-fill {
   height: 100%;
   width: 0;
-  background: #2563eb;
+  background: var(--primary);
   transition: width 0.2s;
 }
 
 #downloadAllBtn {
   margin-bottom: 1rem;
-  background: #16a34a;
+  background: var(--success);
 }
 
 #downloadAllBtn:disabled {
-  background: #a0aec0;
+  background: var(--disabled);
 }
 
 .results {
@@ -126,10 +192,11 @@ button:disabled {
 }
 
 .result-card {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.75rem;
   text-align: center;
+  background: var(--card-bg);
 }
 
 .result-card img {
@@ -141,18 +208,18 @@ button:disabled {
   margin: 0.5rem 0;
   font-size: 0.85rem;
   word-break: break-all;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 .result-card.error {
-  color: #c53030;
-  border-color: #feb2b2;
-  background: #fff5f5;
+  color: var(--error-text);
+  border-color: var(--error-border);
+  background: var(--error-bg);
 }
 
 .download-link {
   display: inline-block;
   margin-top: 0.25rem;
   font-size: 0.85rem;
-  color: #2563eb;
+  color: var(--primary);
 }

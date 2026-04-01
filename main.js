@@ -1,6 +1,22 @@
 import watermark from 'watermarkjs';
 import JSZip from 'jszip';
 
+// Theme toggle
+const themeToggle = document.getElementById('themeToggle');
+const storedTheme = localStorage.getItem('theme');
+if (storedTheme) {
+  document.documentElement.dataset.theme = storedTheme;
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.documentElement.dataset.theme = 'dark';
+}
+themeToggle.textContent = document.documentElement.dataset.theme === 'dark' ? '☀️' : '🌙';
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+  themeToggle.textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('theme', document.documentElement.dataset.theme);
+});
+
 const watermarkInput = document.getElementById('watermarkInput');
 const fileInput = document.getElementById('fileInput');
 const folderInput = document.getElementById('folderInput');
